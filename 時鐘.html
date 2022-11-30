@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>clock 時鐘</title>
+  <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #bak {
+      background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.2)),
+        url(./images/background.png) no-repeat center right/cover;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1920px;
+      height: 1080px;
+      z-index: -100;
+    }
+
+    /* 時鐘--------------------------------------------------------------------------------- */
+    #clock {
+      background: linear-gradient(rgba(215, 205, 185, 0.5), rgba(215, 205, 185, 1)),
+        url(./images/oak-wooden-textured-design-background_53876-143033.jpg);
+      width: 200px;
+      height: 200px;
+      position: absolute;
+      border-radius: 50%;
+      top: 8%;
+      left: 10%;
+      border: 10px solid #AF8F76;
+    }
+
+    .clock-shadow {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      position: absolute;
+      top: 9%;
+      left: 9.8%;
+      background: rgba(89, 73, 61, 0.3);
+    }
+
+    #hour {
+      width: 20%;
+      height: 10px;
+      background: #AF8F76;
+      position: absolute;
+      top: calc(50% - 5px);
+      left: calc(50% - 5px);
+      border-radius: 5px;
+      transform-origin: left center;
+    }
+
+    #minute {
+      width: 30%;
+      height: 10px;
+      background: #CCA888;
+      position: absolute;
+      top: calc(50% - 5px);
+      left: calc(50% - 5px);
+      border-radius: 5px;
+      transform-origin: left center;
+    }
+
+    #second {
+      width: 40%;
+      height: 6px;
+      background: white;
+      position: absolute;
+      top: calc(50% - 3px);
+      left: calc(50% - 3px);
+      border-radius: 5px;
+      transform-origin: left center;
+    }
+
+    #circle {
+      width: 300px;
+      height: 300px;
+      border: 1px solid #CCA888;
+      border-radius: 50%;
+      position: absolute;
+      top: 150px;
+      left: 200px;
+      transform: skewX(-20deg);
+    }
+
+    .line {
+      width: 150px;
+      height: 6px;
+      background: transparent;
+      position: absolute;
+      top: calc(50% - 3px);
+      left: calc(50% - 3px);
+      border-radius: 5px;
+      transform-origin: left center;
+      animation: rotate 1s 1s infinite;
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .ball {
+      width: 20px;
+      height: 20px;
+      background: #AF8F76;
+      position: absolute;
+      top: -7.5px;
+      left: 140px;
+      border-radius: 50%;
+    }
+
+    #circle1 {
+      width: 300px;
+      height: 300px;
+      border: 5px double white;
+      border-radius: 50%;
+      position: absolute;
+      top: 150px;
+      left: 180px;
+      transform: skewX(50deg);
+    }
+
+    .line1 {
+      width: 150px;
+      height: 6px;
+      background: transparent;
+      position: absolute;
+      top: calc(50% - 3px);
+      left: calc(50% - 3px);
+      border-radius: 5px;
+      transform-origin: left center;
+    }
+
+    .ball1 {
+      width: 30px;
+      height: 30px;
+      background: white;
+      position: absolute;
+      top: -7.5px;
+      left: 135px;
+      border-radius: 50%;
+    }
+
+    #circle2 {
+      width: 50px;
+      height: 50px;
+      background: #CCA888;
+      border-radius: 50%;
+      position: absolute;
+      top: 400px;
+      left: 360px;
+    }
+
+    /* 吉祥物--------------------------------------------------------------- */
+
+    #mascot {
+      background: url(./images/mascot.gif);
+      background-size: cover;
+      position: absolute;
+      width: 700px;
+      height: 750px;
+      top: 180px;
+      left: 50%;
+      transform: translateX(-50%);
+      /* filter: drop-shadow(0 10px 3px rgba(89, 73, 61, 0.5)); */
+      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+    }
+
+    .mascot-face {
+      /* background: url(./images/mascot-face-gif/12.gif); */
+      background-size: cover;
+      position: absolute;
+      width: 230px;
+      height: 230px;
+      top: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* 解決白邊 */
+    .circle {
+      width: 227px;
+      height: 227px;
+      border: 8px solid #D9CCB9;
+      border-radius: 50%;
+      position: absolute;
+      top: 33px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* 桌面---------------------------------------------------------------------- */
+    .table {
+      background: url(./images/table.png);
+      background-size: cover;
+      width: 1000px;
+      height: 100px;
+      position: absolute;
+      left: -10%;
+      top: 77%;
+      z-index: -5;
+    }
+
+    .table::after {
+      content: '';
+      background: url(./images/table.png);
+      background-size: cover;
+      width: 1000px;
+      height: 100px;
+      position: absolute;
+      left: 150%;
+      top: 0;
+      z-index: -5;
+    }
+
+    .table1 {
+      background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(173, 142, 117, 1)),
+        url(./images/oak-wooden-textured-design-background_53876-143033.jpg);
+      background-size: cover;
+      width: 2500px;
+      height: 200px;
+      position: absolute;
+      left: 0%;
+      top: 63%;
+      z-index: -6;
+    }
+
+    /* 數字鐘------------------------------------------------------------------ */
+    .digital-clock {
+      background: url(./images/digital-clock.png);
+      background-size: cover;
+      width: 350px;
+      height: 156px;
+      position: absolute;
+      top: -50px;
+      left: 350px;
+      filter: drop-shadow(0 10px 3px rgba(89, 73, 61, 0.5));
+    }
+
+    .digital-clock-shadow {
+      width: 270px;
+      height: 30px;
+      background: rgba(89, 73, 61, 0.3);
+      border-radius: 50%;
+      position: absolute;
+      top: 95px;
+      left: 390px;
+    }
+
+    .digital-clock-text {
+      font-size: 60px;
+      color: #CCA888;
+      position: absolute;
+      top: -15px;
+      left: 419px;
+    }
+
+    .hour {
+      color: #CCA888;
+      font-size: 50px;
+      position: absolute;
+      top: -8px;
+      left: 416px;
+      font-family: 'Itim', cursive;
+      text-align: center;
+    }
+
+    .minute {
+      color: #CCA888;
+      font-size: 50px;
+      position: absolute;
+      top: -8px;
+      left: 501px;
+      font-family: 'Itim', cursive;
+      text-align: center;
+    }
+
+    .second {
+      color: #CCA888;
+      font-size: 50px;
+      position: absolute;
+      top: -8px;
+      left: 578px;
+      font-family: 'Itim', cursive;
+      text-align: center;
+    }
+
+    /* 日曆----------------------------------------------------------------------- */
+
+    .calendar {
+      background: white;
+      background-size: cover;
+      width: 170px;
+      height: 230px;
+      border-radius: 10px;
+      position: absolute;
+      top: -80px;
+      left: 1600px;
+      filter: drop-shadow(0 10px 3px rgba(89, 73, 61, 0.2));
+      transform: skewX(-10deg);
+    }
+
+    .calendar-back {
+      background: #574638;
+      background-size: cover;
+      width: 170px;
+      height: 200px;
+      border-radius: 10px;
+      position: absolute;
+      top: -80px;
+      left: 1640px;
+      filter: drop-shadow(0 10px 3px rgba(89, 73, 61, 0.3));
+      transform: skewX(10deg);
+    }
+
+
+    .year {
+      position: absolute;
+      background: #AF8F76;
+      color: white;
+      width: 170px;
+      height: 80px;
+      border-radius: 10px 10px 0 0;
+      text-align: center;
+      line-height: 80px;
+      font-size: 50px;
+      font-family: 'Itim', cursive;
+    }
+
+    .month {
+      position: absolute;
+      background: transparent;
+      color: #CCA888;
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+      font-size: 40px;
+      font-family: 'Itim', cursive;
+      top: 35%;
+      left: 5%;
+    }
+
+    .date {
+      position: absolute;
+      background: transparent;
+      color: #CCA888;
+      width: 100px;
+      height: 100px;
+      text-align: center;
+      line-height: 100px;
+      font-size: 90px;
+      font-family: 'Itim', cursive;
+      top: 70%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* 窗戶----------------------------------------------------------------------- */
+    #window {
+      width: 400px;
+      height: 400px;
+      background: rgb(225, 219, 205);
+      position: absolute;
+      left: 70%;
+      top: 100px;
+      border-radius: 10px;
+    }
+
+    .window-in {
+      width: 400px;
+      height: 400px;
+      background: url(./images/tree.gif);
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: absolute;
+      border-radius: 10px;
+    }
+
+    #window-frame {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      box-sizing: border-box;
+      border: 20px solid #AF8F76;
+      left: 70%;
+      top: 100px;
+      border-radius: 10px;
+      z-index: 5;
+    }
+
+    #window-frame-shadow {
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      left: 70.6%;
+      top: 110px;
+      border: 20px solid #836b58;
+      border-radius: 10px;
+      z-index: 4;
+    }
+
+    .H {
+      position: absolute;
+      width: 380px;
+      height: 20px;
+      background: #AF8F76;
+      z-index: 1;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .H-shadow {
+      position: absolute;
+      width: 360px;
+      height: 20px;
+      background: #836b58;
+      z-index: 1;
+      top: 53%;
+      transform: translateY(-50%);
+    }
+
+    .V {
+      position: absolute;
+      width: 20px;
+      height: 380px;
+      background: #AF8F76;
+      z-index: 1;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .V-shadow {
+      position: absolute;
+      width: 20px;
+      height: 360px;
+      background: #836b58;
+      z-index: 1;
+      left: 53%;
+      transform: translateX(-50%);
+    }
+
+    #curtain {
+      width: 430px;
+      height: 430px;
+      position: absolute;
+      left: 69.5%;
+      top: 100px;
+      z-index: 10;
+      border-radius: 5px;
+    }
+
+    #btn {
+      width: 100px;
+      height: 50px;
+      position: absolute;
+      left: 86.5%;
+      top: 60%;
+      font-size: 20px;
+      font-family: 'Itim', cursive;
+      color: white;
+      background: #f1ceaf;
+      border: 5px solid #574638;
+      border-radius: 10px;
+      animation: color 2s 0s infinite alternate;
+    }
+
+    @keyframes color {
+      0% {
+        background-color: #CCA888;
+      }
+
+      100% {
+        background-color: #AF8F76;
+      }
+    }
+
+    #btn:active {
+      color: #D9CCB9;
+      background: #AF8F76;
+      border: 7px solid #836b58;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="bak"></div>
+  <!-- mascot 吉祥物 -->
+  <div id="mascot">
+    <div class="mascot-face"></div>
+    <div class="circle"></div>
+  </div>
+  <!-- table 桌面 -->
+  <div class="table">
+    <div class="table1"></div>
+    <div class="digital-clock-shadow"></div>
+    <div class="digital-clock"></div>
+    <div class="digital-clock-text">
+      &nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
+    <div class="hour">00</div>
+    <div class="minute">00</div>
+    <div class="second">00</div>
+    <!-- 日曆 -->
+    <div class="calendar-back"></div>
+    <div class="calendar">
+      <div class="year">0000</div>
+      <div class="month">00</div>
+      <div class="date">00</div>
+    </div>
+  </div>
+  <!-- window 窗戶 -->
+  <div id="window">
+    <div class="window-in"></div>
+  </div>
+  <div id="window-frame-shadow"></div>
+  <div id="window-frame">
+    <div class="H-shadow"></div>
+    <div class="V-shadow"></div>
+    <div class="H"></div>
+    <div class="V"></div>
+  </div>
+  <!-- curtain 窗簾 -->
+  <div id="curtain" style="background:url(./images/curtain.png) no-repeat center right/cover"></div>
+  <input type="button" value="ON / OFF" id="btn">
+  <!-- clock 時鐘 -->
+  <div class="clock-shadow"></div>
+  <div id="circle">
+    <div class="line">
+      <div class="ball"></div>
+    </div>
+  </div>
+  <div id="circle1">
+    <div class="line1">
+      <div class="ball1"></div>
+    </div>
+  </div>
+  <div id="circle2"></div>
+  <div id="clock">
+    <div id="hour"></div>
+    <div id="minute"></div>
+    <div id="second"></div>
+  </div>
+
+  <script>
+    const hour = document.getElementById('hour')
+    const minute = document.getElementById('minute')
+    const second = document.getElementById('second')
+    const bak = document.getElementById('bak')
+    const hour1 = document.querySelector('.hour')
+    const minute1 = document.querySelector('.minute')
+    const second1 = document.querySelector('.second')
+    const mascotFace = document.querySelector('.mascot-face')
+    const window1 = document.querySelector('#window')
+    const line1 = document.querySelector('.line1')
+    const btn = document.querySelector('#btn')
+    const curtain = document.querySelector('#curtain')
+    const year = document.querySelector('.year')
+    const month = document.querySelector('.month')
+    const day = document.querySelector('.date')
+
+    setInterval(() => {
+      const date = new Date()
+      hour.style.transform = `rotate(${date.getHours() * 30 - 90}deg)`
+      minute.style.transform = `rotate(${date.getMinutes() * 6 - 90}deg)`
+      second.style.transform = `rotate(${date.getSeconds() * 6 - 90}deg)`
+    }, 1000)
+
+    setInterval(() => {
+      const date = new Date()
+      line1.style.transform = `rotate(${date.getSeconds() * 6 - 90}deg)`
+    }, 1000)
+
+
+    setInterval(() => {
+      const date = new Date()
+      // hour1.innerHTML = date.getHours()
+      if (date.getHours() < 10) {
+        hour1.innerHTML = '0' + date.getHours()
+      } else {
+        hour1.innerHTML = date.getHours()
+      }
+
+      if (date.getMinutes() < 10) {
+        minute1.innerHTML = '0' + date.getMinutes()
+      } else {
+        minute1.innerHTML = date.getMinutes()
+      }
+
+      if (date.getSeconds() < 10) {
+        second1.innerHTML = '0' + date.getSeconds()
+      } else {
+        second1.innerHTML = date.getSeconds()
+      }
+    }, 1000)
+
+    setInterval(() => {
+      const date = new Date()
+      mascotFace.style.background = `url(./images/mascot-face-gif/${date.getHours()}.gif) center right/cover`
+    }, minute)
+
+    setInterval(() => {
+      const date = new Date()
+      mascotFace.style.background = `url(./images/mascot-face-gif/${date.getHours()}.gif) center right/cover`
+    }, minute)
+
+    const date = new Date()
+    if (date.getHours() === 1) {
+      window1.style = '-webkit-filter:brightness(40%)'
+    } else if (date.getHours() === 2) {
+      window1.style = '-webkit-filter:brightness(40%)'
+    }
+    else if (date.getHours() === 3) {
+      window1.style = '-webkit-filter:brightness(40%)'
+    }
+    else if (date.getHours() === 4) {
+      window1.style = '-webkit-filter:brightness(50%)'
+    }
+    else if (date.getHours() === 5) {
+      window1.style = '-webkit-filter:brightness(60%)'
+    }
+    else if (date.getHours() === 6) {
+      window1.style = '-webkit-filter:brightness(70%)'
+    }
+    else if (date.getHours() === 7) {
+      window1.style = '-webkit-filter:brightness(80%)'
+    }
+    else if (date.getHours() === 8) {
+      window1.style = '-webkit-filter:brightness(90%)'
+    }
+    else if (date.getHours() === 9) {
+      window1.style = '-webkit-filter:brightness(100%)'
+    }
+    else if (date.getHours() === 10) {
+      window1.style = '-webkit-filter:brightness(105%)'
+    }
+    else if (date.getHours() === 11) {
+      window1.style = '-webkit-filter:brightness(110%)'
+    }
+    else if (date.getHours() === 12) {
+      window1.style = '-webkit-filter:brightness(115%)'
+    }
+    else if (date.getHours() === 13) {
+      window1.style = '-webkit-filter:brightness(110%)'
+    }
+    else if (date.getHours() === 14) {
+      window1.style = '-webkit-filter:brightness(105%)'
+    }
+    else if (date.getHours() === 15) {
+      window1.style = '-webkit-filter:brightness(100%)'
+    }
+    else if (date.getHours() === 16) {
+      window1.style = '-webkit-filter:brightness(90%)'
+    }
+    else if (date.getHours() === 17) {
+      window1.style = '-webkit-filter:brightness(80%)'
+    }
+    else if (date.getHours() === 18) {
+      window1.style = '-webkit-filter:brightness(70%)'
+    }
+    else if (date.getHours() === 19) {
+      window1.style = '-webkit-filter:brightness(60%)'
+    }
+    else if (date.getHours() === 20) {
+      window1.style = '-webkit-filter:brightness(50%)'
+    }
+    else if (date.getHours() === 21) {
+      window1.style = '-webkit-filter:brightness(40%)'
+    }
+    else if (date.getHours() === 22) {
+      window1.style = '-webkit-filter:brightness(40%)'
+    }
+    else if (date.getHours() === 23) {
+      window1.style = '-webkit-filter:brightness(40%)'
+    }
+    else if (date.getHours() === 0) {
+      window1.style = '-webkit-filter:brightness(40%)'
+    }
+
+    let num = 1
+    btn.onclick = function () {
+      if (num === 1) {
+        curtain.style.background = `url(./images/curtain1.png) no-repeat center right/cover`
+        num = 2;
+      } else {
+        curtain.style.background = 'url(./images/curtain.png) no-repeat center right/cover'
+        num = 1;
+      }
+    };
+
+    setInterval(() => {
+      const date = new Date()
+      const monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Spt", "Oct", "Nov", "Dec"]
+      // hour1.innerHTML = date.getHours()
+      year.innerHTML = date.getFullYear()
+
+      month.innerHTML = monthArray[date.getMonth()]
+
+      if (date.getDate() < 10) {
+        day.innerHTML = '0' + date.getDate()
+      } else {
+        day.innerHTML = date.getDate()
+      }
+    }, 1000)
+
+  </script>
+</body>
+
+</html>
